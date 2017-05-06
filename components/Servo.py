@@ -28,3 +28,6 @@ class Servo:
         self.report.log("SERVO::Move channel {0} to {1} percent. Value of {2}".format(channel, percent, value))
 
         self.move_servo(channel, value)
+
+    def sleep(self, channel):
+        self.pwm.set_pwm(channel, 0, 0)
