@@ -9,6 +9,8 @@ class Servo:
         self.servo_min = 150  # Min pulse length out of 4096
         self.servo_max = 600  # Max pulse length out of 4096
 
+        self.amount = 0
+        
         # Set frequency to 60hz, good for servos.
         self.pwm.set_pwm_freq(60)
 
@@ -20,6 +22,7 @@ class Servo:
             return
 
         self.pwm.set_pwm(channel, 0, amount)
+        self.amount = amount
 
     def move_servo_to_percent(self, channel, percent):
 
@@ -28,6 +31,10 @@ class Servo:
         self.report.log("SERVO::Move channel {0} to {1} percent. Value of {2}".format(channel, percent, value))
 
         self.move_servo(channel, value)
+        
+        self.amount = value
+        
 
     def sleep(self, channel):
         self.pwm.set_pwm(channel, 0, 0)
+        self.amount = 0
