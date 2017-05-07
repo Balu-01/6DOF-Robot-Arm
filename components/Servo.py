@@ -9,7 +9,7 @@ class Servo:
         self.servo_min = 150  # Min pulse length out of 4096
         self.servo_max = 600  # Max pulse length out of 4096
 
-        self.amount = 0
+        self.amount = int( 0.5 * (self.servo_max - self.servo_min) )
         
         # Set frequency to 60hz, good for servos.
         self.pwm.set_pwm_freq(60)
